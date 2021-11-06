@@ -36,24 +36,27 @@ app.listen(3000, function () {
 app.post('/post', async (req, res)=>{
     try{
          projectData["cityName"] = await req.body.userInput;
+
         //Send user input to Geonames service and get weather data back
         getWeatherData(projectData["cityName"])
         .then(()=>{
+
+            //Send city and country as input for pixabay api to get image link of that city
             getImageData(projectData["cityName"], projectData["country"]);
         })
+        .then(()=>{
 
+            //Send endpoint data to client side
+            res.send(projectData);
+        })
     }catch(error){
         console.log("error", error);
     }
 })
 
-//Send endpoint data to client side
-app.get('/get', async (req, res)=>{
-    res.send(projectData);
-})
-
 // Function to retrieve weather data
 const getWeatherData = async (city) =>{
+
     //Retrieve coordinates from Geonames api
     const response = await fetch(`http://api.geonames.org/searchJSON?q=${city}&maxRows=10&username=${process.env.API_USERNAME}`)
     try {
@@ -84,5 +87,4 @@ const getImageData = async (city, country) =>{
     //Save image link to data endpoint 
     projectData["image"] = result.hits[0].webformatURL;
     console.log(projectData);
-
 }

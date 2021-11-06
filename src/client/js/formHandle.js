@@ -2,15 +2,15 @@ async function handleSubmit(event){
     event.preventDefault();
 
     //Get user input as city name
-    const cityName = document.getElementById('destination').value;
+    let cityName = document.getElementById('destination').value;
 
     //Check the city as a valid name
-    Client.checkForInput(cityName);
+    cityName = Client.checkForInput(cityName);
 
     try {
         //Post user input to the server side
-        const temp = postUserData('/post', {userInput: cityName})
-
+        const data = await postUserData('/post', {userInput: cityName})
+        
     }catch(error){
         console.log("error", error);
     }
@@ -27,7 +27,9 @@ const postUserData = async (url='', data = {}) => {
         body: JSON.stringify(data),
     })
     try {
-        console.log('Data posted');
+        const serverData = await response.json();
+        console.log(serverData);
+        return serverData
     }catch(error) {
         console.log("error", error);
     }
