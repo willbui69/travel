@@ -35,15 +35,11 @@ app.listen(3000, function () {
 //Get user input from client side
 app.post('/post', async (req, res)=>{
     try{
-         projectData["cityName"] = await req.body.userInput;
+         projectData["cityName"] = await req.body.cityName;
+         projectData["departDate"] = await req.body.departDate;
 
         //Send user input to Geonames service and get weather data back
-        getWeatherData(projectData["cityName"])
-        .then(()=>{
-
-            //Send city and country as input for pixabay api to get image link of that city
-            getImageData(projectData["cityName"], projectData["country"]);
-        })
+        getWeatherData(projectData["cityName"], projectData["departDate"])
         .then(()=>{
 
             //Send endpoint data to client side
@@ -55,36 +51,69 @@ app.post('/post', async (req, res)=>{
 })
 
 // Function to retrieve weather data
-const getWeatherData = async (city) =>{
+const getWeatherData = async (cityName, departDate) =>{
 
     //Retrieve coordinates from Geonames api
-    const response = await fetch(`http://api.geonames.org/searchJSON?q=${city}&maxRows=10&username=${process.env.API_USERNAME}`)
+    const response = await fetch(`http://api.geonames.org/searchJSON?q=${cityName}&maxRows=10&username=${process.env.API_USERNAME}`)
     try {
         const data = await response.json();
-        const newdata = await data.geonames[0];
-        const lat = newdata.lat;
-        const lon = newdata.lng;
-        const countryName = newdata.countryName;
+        const lat = data.geonames[0].lat;
+        const lon = data.geonames[0].lng;
+        const countryName = data.geonames[0].countryName;
+        projectData["countryName"] = countryName;
 
-        //Use coordinates to retrieve weather data from wheatherbit
-        const results = await fetch(`https://api.weatherbit.io/v2.0/current?lat=${lat}&lon=${lon}&key=${process.env.WEATHER_API_KEY}&include=minutely`)
-        const result = await results.json();
+        //Calculate date difference 
+        const dateDifference = calculateDateDifference(departDate);
 
-        //Save weather data to the server endpoint
-        projectData["country"] = countryName;
-        projectData["temp"] = await result.data[0].temp;
-        projectData["des"] = await result.data[0].weather.description;
+        if(dateDifference < 8) {
+        //Use coordinates to retrieve current weather data from wheatherbit
+        const WeatherResults = await fetch(`https://api.weatherbit.io/v2.0/current?lat=${lat}&lon=${lon}&key=${process.env.WEATHER_API_KEY}&include=minutely`)
+        
+        //Save weather data to server endpoint
+        saveWeatherData(WeatherResults);
+
+        //Get and save city image link
+        const imageLink = await getImageData(cityName, countryName);
+        projectData["imageLink"] = imageLink;
+        console.log(projectData);
+        } else{
+        //Use coordinates to retrieve forecast data from wheatherbit
+        const WeatherResults = await fetch(`https://api.weatherbit.io/v2.0/forecast/daily?lat=${lat}&lon=${lon}&key=${process.env.WEATHER_API_KEY}`)
+        
+        //Save weather data to server endpoint
+        saveWeatherData(WeatherResults);
+
+        //Get and save city image link
+        const imageLink = await getImageData(cityName, countryName);
+        projectData["imageLink"] = imageLink;
+        console.log(projectData);
+        }
     }catch(error){
         console.log("error", error);
     }
 }
 
-//Function to get image data from Pixabay service
-const getImageData = async (city, country) =>{
-    const results = await fetch(`https://pixabay.com/api/?key=${process.env.IMAGE_API_KEY}&q=${city}+${country}+city&image_type=photo`)
-    const result = await results.json();
+//Function to calculate date difference
+ function calculateDateDifference(futureDate){
+     let current = Date.parse(new Date());
+     let future =Date.parse(futureDate);
+     let dateDifference = (future - current) / (1000 * 3600 * 24);
+     return dateDifference
+ }
 
-    //Save image link to data endpoint 
-    projectData["image"] = result.hits[0].webformatURL;
-    console.log(projectData);
-}
+ //Function to save weather data
+ async function saveWeatherData(data){
+    let newData = await data.json();
+    //Save weather data to the server endpoint
+    projectData["temp"] = await newData.data[0].temp;
+    projectData["des"] = await newData.data[0].weather.description;
+ }
+
+ //Function to call Pixabay API
+ async function getImageData(cityName, countryName){
+    //Use city name and country name to get image from Pixabay service
+    let ImageResults = await fetch(`https://pixabay.com/api/?key=${process.env.IMAGE_API_KEY}&q=${cityName}+city+${projectData["countryName"]}&image_type=photo`)
+    let ImageResult = await ImageResults.json();
+    let imageLink = await ImageResult.hits[0].webformatURL;
+    return imageLink;
+ }

@@ -1,16 +1,19 @@
 async function handleSubmit(event){
     event.preventDefault();
 
-    //Get user input as city name
+    //Get user input as city name and departing date
     let cityName = document.getElementById('destination').value;
+    let departDate = document.getElementById('depart').value;
 
     //Check the city as a valid name
     cityName = Client.checkForInput(cityName);
 
     try {
         //Post user input to the server side
-        const data = await postUserData('/post', {userInput: cityName})
-        
+        const data = await postUserData('/post', {cityName: cityName, departDate: departDate})
+
+        //Update the UI
+
     }catch(error){
         console.log("error", error);
     }
