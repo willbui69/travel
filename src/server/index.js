@@ -95,6 +95,8 @@ const getWeatherData = async (cityName, departDate) =>{
 
 //Function to calculate date difference
  function calculateDateDifference(futureDate){
+
+    //Convert date into millisecs
      let current = Date.parse(new Date());
      let future =Date.parse(futureDate);
      let dateDifference = (future - current) / (1000 * 3600 * 24);
@@ -104,6 +106,7 @@ const getWeatherData = async (cityName, departDate) =>{
  //Function to save weather data
  async function saveWeatherData(data){
     let newData = await data.json();
+
     //Save weather data to the server endpoint
     projectData["temp"] = await newData.data[0].temp;
     projectData["des"] = await newData.data[0].weather.description;
@@ -111,9 +114,20 @@ const getWeatherData = async (cityName, departDate) =>{
 
  //Function to call Pixabay API
  async function getImageData(cityName, countryName){
+
     //Use city name and country name to get image from Pixabay service
     let ImageResults = await fetch(`https://pixabay.com/api/?key=${process.env.IMAGE_API_KEY}&q=${cityName}+city+${projectData["countryName"]}&image_type=photo`)
     let ImageResult = await ImageResults.json();
-    let imageLink = await ImageResult.hits[0].webformatURL;
-    return imageLink;
+    
+    //No results returned then just use countryName as keyword only
+    if(ImageResult.total == 0){
+        ImageResults = await fetch(`https://pixabay.com/api/?key=${process.env.IMAGE_API_KEY}&q=${projectData["countryName"]}&image_type=photo`)
+        ImageResult = await ImageResults.json();
+        let imageLink = await ImageResult.hits[0].webformatURL;
+        return imageLink;
+    } else{
+        //Return the first element of results
+        let imageLink = await ImageResult.hits[0].webformatURL;
+        return imageLink;
+    }
  }
