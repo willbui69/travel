@@ -6,8 +6,8 @@ async function handleSubmit(event){
     let departDate = document.getElementById('depart').value;
 
     //Check the city as a valid name
-    cityName = Client.checkForInput(cityName);
-    departDate = Client.checkForDate(departDate);
+    cityName = Client.checkForCityInput(cityName);
+    departDate = Client.checkForDateInput(departDate);
 
     if (cityName == '' || departDate == ''){
         alert('Please type your favorite destination and date!')

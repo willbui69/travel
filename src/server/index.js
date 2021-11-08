@@ -69,6 +69,7 @@ const getWeatherData = async (cityName, departDate) =>{
         projectData["dateGap"] = dateDifference;
 
         if(dateDifference < 8) {
+            
         //Use coordinates to retrieve current weather data from wheatherbit
         const WeatherResults = await fetch(`https://api.weatherbit.io/v2.0/current?lat=${lat}&lon=${lon}&key=${process.env.WEATHER_API_KEY}&include=minutely`)
         
@@ -80,6 +81,7 @@ const getWeatherData = async (cityName, departDate) =>{
         projectData["imageLink"] = imageLink;
         console.log(projectData);
         } else{
+
         //Use coordinates to retrieve forecast data from wheatherbit
         const WeatherResults = await fetch(`https://api.weatherbit.io/v2.0/forecast/daily?lat=${lat}&lon=${lon}&key=${process.env.WEATHER_API_KEY}`)
         
@@ -127,6 +129,7 @@ const getWeatherData = async (cityName, departDate) =>{
         let imageLink = 'https://pixabay.com/get/g8d60eededd5eeb4cc8b2de51767b0b4a1f2808c39c82b49706f54428e19573e42724bce3f35e20a73b3063df74b6fc57_640.jpg';
         return imageLink;
     } else{
+
         //Return the first element of results
         let imageLink = await ImageResult.hits[0].webformatURL;
         return imageLink;

@@ -1,6 +1,6 @@
- import { checkForInput } from './js/userInputCheck'
+ import { checkForCityInput } from './js/userInputCheck'
  import { handleSubmit } from './js/formHandle'
- import { checkForDate } from './js/userInputCheck'
+ import { checkForDateInput } from './js/userInputCheck'
 
  document.getElementById('submit').addEventListener('click',displayData);
 
@@ -9,7 +9,7 @@
  }
 
  export { 
-     checkForInput,
+     checkForCityInput,
      handleSubmit,
-     checkForDate  
+     checkForDateInput  
      }

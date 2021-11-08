@@ -1,4 +1,4 @@
-function checkForInput(data){
+function checkForCityInput(data){
      data = data.trim();
      if(data.length === 0){
         return false
@@ -7,7 +7,7 @@ function checkForInput(data){
      }
 }
 
-function checkForDate(futureDate){
+function checkForDateInput(futureDate){
    let current = Date.parse(new Date());
    let future =Date.parse(futureDate);
    if((future - current) < 0){
@@ -19,6 +19,6 @@ function checkForDate(futureDate){
 }
 
 export { 
-   checkForInput,
-   checkForDate
+   checkForCityInput,
+   checkForDateInput
  }
