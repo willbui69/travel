@@ -1,11 +1,24 @@
 function checkForInput(data){
      data = data.trim();
      if(data.length === 0){
-        alert('Please type your destination city');
-       return false;
+        return false
      }else {
-        return data;
+        return data
      }
 }
 
-export { checkForInput }
+function checkForDate(futureDate){
+   let current = Date.parse(new Date());
+   let future =Date.parse(futureDate);
+   if((future - current) < 0){
+      alert('Date must be today or in the future!');
+      return false
+   }else{
+      return futureDate
+   }
+}
+
+export { 
+   checkForInput,
+   checkForDate
+ }

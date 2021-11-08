@@ -60,10 +60,13 @@ const getWeatherData = async (cityName, departDate) =>{
         const lat = data.geonames[0].lat;
         const lon = data.geonames[0].lng;
         const countryName = data.geonames[0].countryName;
+        projectData["latitude"] = lat;
+        projectData["longitude"] = lon;
         projectData["countryName"] = countryName;
 
         //Calculate date difference 
         const dateDifference = calculateDateDifference(departDate);
+        projectData["dateGap"] = dateDifference;
 
         if(dateDifference < 8) {
         //Use coordinates to retrieve current weather data from wheatherbit
@@ -100,7 +103,7 @@ const getWeatherData = async (cityName, departDate) =>{
      let current = Date.parse(new Date());
      let future =Date.parse(futureDate);
      let dateDifference = (future - current) / (1000 * 3600 * 24);
-     return dateDifference
+     return Math.round(dateDifference)
  }
 
  //Function to save weather data
@@ -119,11 +122,9 @@ const getWeatherData = async (cityName, departDate) =>{
     let ImageResults = await fetch(`https://pixabay.com/api/?key=${process.env.IMAGE_API_KEY}&q=${cityName}+city+${projectData["countryName"]}&image_type=photo`)
     let ImageResult = await ImageResults.json();
     
-    //No results returned then just use countryName as keyword only
+    //No results returned then just use the default image link
     if(ImageResult.total == 0){
-        ImageResults = await fetch(`https://pixabay.com/api/?key=${process.env.IMAGE_API_KEY}&q=${projectData["countryName"]}&image_type=photo`)
-        ImageResult = await ImageResults.json();
-        let imageLink = await ImageResult.hits[0].webformatURL;
+        let imageLink = 'https://pixabay.com/get/g8d60eededd5eeb4cc8b2de51767b0b4a1f2808c39c82b49706f54428e19573e42724bce3f35e20a73b3063df74b6fc57_640.jpg';
         return imageLink;
     } else{
         //Return the first element of results

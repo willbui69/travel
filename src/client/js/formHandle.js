@@ -7,17 +7,28 @@ async function handleSubmit(event){
 
     //Check the city as a valid name
     cityName = Client.checkForInput(cityName);
+    departDate = Client.checkForDate(departDate);
 
-    try {
-        //Post user input to the server side
-        const data = await postUserData('/post', {cityName: cityName, departDate: departDate})
-
-        //Update the UI
-
-    }catch(error){
-        console.log("error", error);
+    if (cityName == '' || departDate == ''){
+        alert('Please type your favorite destination and date!')
+        return false
+    } else{
+        try {
+            //Post user input to the server side
+            const serverData = await postUserData('/post', {cityName: cityName, departDate: departDate})
+    
+            //Update the UI
+            if(typeof(serverData.latitude) == 'undefined' || typeof(serverData.longitude) == 'undefined'){
+                alert('Please check your city spelling!');
+                return false
+            } else{
+                console.log('update data here');
+            }
+    
+        }catch(error){
+            console.log("error", error);
+        }
     }
-
 }
 
 const postUserData = async (url='', data = {}) => {
