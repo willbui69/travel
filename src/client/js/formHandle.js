@@ -24,11 +24,6 @@ async function handleSubmit(event){
             } else{
                 //Redirect the page to result.html page
                 window.location.replace("http://localhost:3000/result.html");
-
-                //Then update the UI
-                document.getElementById('result-destination').innerHTML = `<p>My trip to: ${serverData.cityName}</p>`
-                document.getElementById('result-depart').innerHTML = `<p>Departing: ${serverData.departDate}</p>`
-
             }
     
         }catch(error){
