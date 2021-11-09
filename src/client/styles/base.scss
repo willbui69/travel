@@ -2,14 +2,14 @@ html, body {
     margin: 0;
     padding: 0;
     height: 100vh;
+    min-width: 300px;
     text-decoration: none;
-    min-width: 310px;
 }
 
-body {
+.container {
     display: grid;
     grid-template-columns: 100%;
-    grid-template-rows: 10% auto 10%;
+    grid-template-rows: 15% auto 10%;
     grid-template-areas: 
     "header"
     "main"
@@ -19,7 +19,7 @@ body {
 }
 
 @media only screen and (min-width: 600px){
-    body {
+    .container {
         display: grid;
         grid-template-columns: 100px auto 100px;
         grid-template-rows: 10% auto 10%;
