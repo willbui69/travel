@@ -4,7 +4,7 @@ async function handleSubmit(event){
     //Get user input as city name and departing date
     let cityName = document.getElementById('destination').value;
     let departDate = document.getElementById('depart').value;
-
+    
     //Check the city as a valid name
     cityName = Client.checkForCityInput(cityName);
     departDate = Client.checkForDateInput(departDate);
@@ -16,7 +16,7 @@ async function handleSubmit(event){
         try {
             //Post user input to the server side
             const serverData = await postUserData('/post', {cityName: cityName, departDate: departDate})
-    
+
             //Check if no location found by Geonames service
             if(typeof(serverData.latitude) == 'undefined' || typeof(serverData.longitude) == 'undefined'){
                 alert('Please check your city spelling!');
