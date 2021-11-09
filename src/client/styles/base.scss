@@ -6,6 +6,7 @@ html, body {
     text-decoration: none;
 }
 
+//base for index.html page
 .container {
     display: grid;
     grid-template-columns: 100%;
@@ -32,3 +33,17 @@ html, body {
     }     
 }
 
+//base for result.html page
+.result-body-container {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 15% 25% 10% 10% 10% 20% 10%;
+    grid-template-areas: 
+    "header"
+    "image"
+    "destination"
+    "depart"
+    "dategap"
+    "weather"
+    "footer";
+}

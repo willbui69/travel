@@ -1,1 +1,10 @@
-alert('result.js exist!');
+import { handleSubmit } from './js/formHandle'
+
+import './styles/base.scss'
+import './styles/header.scss'
+import './styles/main.scss'
+import './styles/footer.scss'
+
+export {
+    handleSubmit
+}

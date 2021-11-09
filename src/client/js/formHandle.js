@@ -17,12 +17,18 @@ async function handleSubmit(event){
             //Post user input to the server side
             const serverData = await postUserData('/post', {cityName: cityName, departDate: departDate})
     
-            //Update the UI
+            //Check if no location found by Geonames service
             if(typeof(serverData.latitude) == 'undefined' || typeof(serverData.longitude) == 'undefined'){
                 alert('Please check your city spelling!');
                 return false
             } else{
-                console.log('update data here');
+                //Redirect the page to result.html page
+                window.location.replace("http://localhost:3000/result.html");
+
+                //Then update the UI
+                document.getElementById('result-destination').innerHTML = `<p>My trip to: ${serverData.cityName}</p>`
+                document.getElementById('result-depart').innerHTML = `<p>Departing: ${serverData.departDate}</p>`
+
             }
     
         }catch(error){

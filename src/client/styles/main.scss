@@ -1,4 +1,6 @@
-main {
+//style for index.html
+
+.index-main-container {
     grid-area: main;
     border: none;
     background-color: #0284C9;
@@ -66,4 +68,30 @@ button {
             color: #F8F6F2;
         }
     }
+}
+
+//style for result.html
+.result-image {
+    grid-area: image;
+    border: 1px solid red;
+}
+
+#result-destination {
+    grid-area: destination;
+    border: 1px solid green;
+}
+
+#result-depart {
+    grid-area: depart;
+    border: 1px solid blue;
+}
+
+#result-dategap {
+    grid-area: dategap;
+    border: 1px solid orange;
+}
+
+#result-weather {
+    grid-area: weather;
+    border: 1px solid violet;
 }
