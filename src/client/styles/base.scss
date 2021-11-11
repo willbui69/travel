@@ -2,11 +2,12 @@ html, body {
     margin: 0;
     padding: 0;
     height: 100vh;
-    min-width: 300px;
     text-decoration: none;
 }
 
-//base for index.html page
+//Base for index.html page
+
+//Use for small screen (mobile phones)
 .container {
     display: grid;
     grid-template-columns: 100%;
@@ -19,6 +20,7 @@ html, body {
     border: none;
 }
 
+//Use for larger screens
 @media only screen and (min-width: 600px){
     .container {
         display: grid;
@@ -33,7 +35,9 @@ html, body {
     }     
 }
 
-//base for result.html page
+//Base for result.html page
+
+//Use for small screen (mobile screens)
 .result-body-container {
     display: grid;
     grid-template-columns: 100%;
@@ -46,4 +50,22 @@ html, body {
     "dategap"
     "weather"
     "footer";
+    background-color: #0284C9;
+}
+
+//Display for larger screens
+@media only screen and (min-width: 600px){
+    .result-body-container {
+        display: grid;
+        grid-template-columns: 40% 60%;
+        grid-template-rows: 15% 15% 10% 10% 40% 10%;
+        grid-template-areas: 
+        "header header"
+        "image destination"
+        "image depart"
+        "image dategap"
+        "image weather"
+        "footer footer";
+        background-color: #0284C9;
+    }
 }

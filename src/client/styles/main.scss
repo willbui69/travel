@@ -4,7 +4,6 @@
     grid-area: main;
     border: none;
     background-color: #0284C9;
-    min-width: 310px;
 }
 
 .form-container {
@@ -12,7 +11,7 @@
     margin-top: 40%;
     label {
         font-family: 'Times New Roman', Times, serif;
-        font-size: 26px;
+        font-size: 2rem;
         color: #F8F6F2;
     }
 }
@@ -23,7 +22,7 @@ button {
     height: 30px;
     color: #0284C9;
     font-family: 'Times New Roman', Times, serif;
-    font-size: 14px;
+    font-size: 1rem;
     font-weight: 400;
     border: none;
     border-radius: 5px;
@@ -42,7 +41,7 @@ button {
     height: 25px;
     font-family: 'Times New Roman', Times, serif;
     font-weight: 400px;
-    font-size: 16px;
+    font-size: 1rem;
     border: none;
     border-radius: 3px;
 }
@@ -51,7 +50,7 @@ button {
     width: 130px;
     height: 25px;
     color: #0284C9;
-    font-size: 16px;
+    font-size: 1rem;
     font-family: 'Times New Roman', Times, serif;
     font-weight: 400;
     border: none;
@@ -71,27 +70,22 @@ button {
 }
 
 //style for result.html
-.result-image {
+#result-image {
     grid-area: image;
-    border: 1px solid red;
 }
 
 #result-destination {
     grid-area: destination;
-    border: 1px solid green;
 }
 
 #result-depart {
     grid-area: depart;
-    border: 1px solid blue;
 }
 
 #result-dategap {
     grid-area: dategap;
-    border: 1px solid orange;
 }
 
 #result-weather {
     grid-area: weather;
-    border: 1px solid violet;
 }

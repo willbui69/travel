@@ -22,7 +22,7 @@ async function handleSubmit(event){
                 alert('Please check your city spelling!');
                 return false
             } else{
-                //Redirect the page to result.html page
+                //Redirect the index page to result.html
                 window.location.replace("http://localhost:3000/result.html");
             }
     
