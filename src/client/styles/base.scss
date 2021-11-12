@@ -2,6 +2,8 @@ html, body {
     margin: 0;
     padding: 0;
     height: 100vh;
+    width: 100vw;
+    min-width: 320px;
     text-decoration: none;
 }
 
@@ -24,7 +26,7 @@ html, body {
 @media only screen and (min-width: 600px){
     .container {
         display: grid;
-        grid-template-columns: 100px auto 100px;
+        grid-template-columns: 5% auto 5%;
         grid-template-rows: 10% auto 10%;
         grid-template-areas: 
         ". header ."
@@ -37,35 +39,45 @@ html, body {
 
 //Base for result.html page
 
-//Use for small screen (mobile screens)
 .result-body-container {
     display: grid;
     grid-template-columns: 100%;
-    grid-template-rows: 15% 25% 10% 10% 10% 20% 10%;
+    grid-template-rows: 15% auto 10%;
     grid-template-areas: 
     "header"
-    "image"
-    "destination"
-    "depart"
-    "dategap"
-    "weather"
+    "main"
     "footer";
-    background-color: #0284C9;
 }
 
-//Display for larger screens
-@media only screen and (min-width: 600px){
-    .result-body-container {
-        display: grid;
-        grid-template-columns: 40% 60%;
-        grid-template-rows: 15% 15% 10% 10% 40% 10%;
-        grid-template-areas: 
-        "header header"
-        "image destination"
-        "image depart"
-        "image dategap"
-        "image weather"
-        "footer footer";
-        background-color: #0284C9;
-    }
-}
+//Use for small screen (mobile screens)
+ .result-body-container {
+     display: grid;
+     grid-template-columns: 100%;
+     grid-template-rows: 15% 25% 10% 10% 30% 10%;
+     grid-template-areas: 
+     "header"
+     "image"
+     "destination"
+     "daygap"
+     "weather"
+     "footer";
+     grid-gap: 5px;
+     background-color: #0284C9;
+ }
+
+// //Display for larger screens
+ @media only screen and (min-width: 600px){
+     .result-body-container {
+         display: grid;
+         grid-template-columns: 40% 60%;
+         grid-template-rows: 15% 20% 15% 40% 10%;
+         grid-template-areas: 
+         "header header"
+         "image destination"
+         "image daygap"
+         "image weather"
+         "footer footer";
+         background-color: #0284C9;
+         grid-gap: 5px;
+     }
+ }
