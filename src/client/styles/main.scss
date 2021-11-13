@@ -57,10 +57,10 @@ button {
     border-radius: 3px;
 }
 
-@media only screen and (min-width: 390px){
+@media (min-width: 360px){
     .form-container {
         text-align: center;
-        margin-top: 15%;
+        margin-top: 20vh;
         label {
             font-family: 'Times New Roman', Times, serif;
             font-size: 26px;
@@ -69,18 +69,3 @@ button {
     }
 }
 
-#result-image {
-    grid-area: image;
-}
-
-#result-destination {
-    grid-area: destination;
-}
-
-#result-dategap {
-    grid-area: daygap;
-}
-
-#result-weather {
-    grid-area: weather;
-}

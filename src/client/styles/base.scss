@@ -13,7 +13,7 @@ html, body {
 .container {
     display: grid;
     grid-template-columns: 100%;
-    grid-template-rows: 15% auto 10%;
+    grid-template-rows: 10% auto 10%;
     grid-template-areas: 
     "header"
     "main"
@@ -38,46 +38,44 @@ html, body {
 }
 
 //Base for result.html page
-
 .result-body-container {
     display: grid;
     grid-template-columns: 100%;
-    grid-template-rows: 15% auto 10%;
+    grid-template-rows: 10% auto 10%;
     grid-template-areas: 
     "header"
     "main"
-    "footer";
+    "footer"
+    ;
+    border: 1px solid green;
+    main {
+        display: grid;
+        grid-template-columns: 40% 60%;
+        grid-template-rows: repeat(3, 1fr);
+        grid-template-areas: 
+        "image des"
+        "image dategap"
+        "image weather";
+    }
 }
 
-//Use for small screen (mobile screens)
- .result-body-container {
-     display: grid;
-     grid-template-columns: 100%;
-     grid-template-rows: 15% 25% 10% 10% 30% 10%;
-     grid-template-areas: 
-     "header"
-     "image"
-     "destination"
-     "daygap"
-     "weather"
-     "footer";
-     grid-gap: 5px;
-     background-color: #0284C9;
- }
+#result-image {
+    grid-area: image;
+    background-color: blue;
+    border: 1px solid orange;
+}
 
-// //Display for larger screens
- @media only screen and (min-width: 600px){
-     .result-body-container {
-         display: grid;
-         grid-template-columns: 40% 60%;
-         grid-template-rows: 15% 20% 15% 40% 10%;
-         grid-template-areas: 
-         "header header"
-         "image destination"
-         "image daygap"
-         "image weather"
-         "footer footer";
-         background-color: #0284C9;
-         grid-gap: 5px;
-     }
- }
+#result-destination {
+    grid-area: des;
+    background-color:burlywood;
+}
+
+#result-dategap {
+    grid-area: dategap;
+    background-color: cadetblue;
+}
+
+#result-weather {
+    grid-area: weather;
+    background-color: coral;
+}
