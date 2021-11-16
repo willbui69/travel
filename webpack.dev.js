@@ -60,7 +60,7 @@ module.exports = {
             protectWebpackAssets: false
         }),
         new ESLintPlugin({
-            extensions: [`js`],
+            extensions: '/\.js$/',
             exclude: [
                 `node_modules`,
             ]
