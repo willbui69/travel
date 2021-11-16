@@ -132,7 +132,7 @@ const getWeatherData = async (cityName, departDate) =>{
     
     //No results returned then just use the default image link
     if(ImageResult.total == 0){
-        let imageLink = 'https://pixabay.com/get/ga238a478c40ed9796eb83a0bce926fd8cfbad67fd2ba2852f0159a11de04a17e96588a8acc2b796478cf67ba00b6e5e906bce1320f24a850e6c3b2b5c131603f_640.jpg';
+        let imageLink = 'https://pixabay.com/get/g7697f0ba607f4270e247639dff78845406f1f6887910db18155c235f38912a432217819490962bbfaefa30ad128f0ec7c952cce4d5358b2fd88d8930b6028e70_640.jpg';
         return imageLink;
     } else{
 

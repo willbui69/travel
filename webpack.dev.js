@@ -63,7 +63,8 @@ module.exports = {
             extensions: '/\.js$/',
             exclude: [
                 `node_modules`,
-            ]
+            ],
+            failOnWarning: true
         })
     ]
 }
