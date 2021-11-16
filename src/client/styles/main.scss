@@ -69,3 +69,30 @@ button {
     }
 }
 
+// Style for result.html
+.result-main-container {
+    grid-area: main;
+    border: none;
+}
+
+#result-image {
+    grid-area: image;
+}
+
+#result-destination {
+    grid-area: des;
+    background-color: #0284C9;
+    overflow: hidden;
+}
+
+#result-dategap {
+    grid-area: dategap;
+    background-color: #0284C9;
+    overflow: hidden;
+}
+
+#result-weather {
+    grid-area: weather;
+    background-color: #0284C9;
+    overflow: hidden;
+}

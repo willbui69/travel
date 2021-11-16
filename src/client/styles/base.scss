@@ -19,7 +19,6 @@ html, body {
     "main"
     "footer"
     ;
-    border: none;
 }
 
 //Use for larger screens
@@ -33,49 +32,57 @@ html, body {
         ". main ."
         ". footer ."
         ;
-        border: none;
     }     
 }
 
 //Base for result.html page
 .result-body-container {
     display: grid;
-    grid-template-columns: 100%;
-    grid-template-rows: 10% auto 10%;
-    grid-template-areas: 
-    "header"
-    "main"
-    "footer"
-    ;
-    border: 1px solid green;
-    main {
-        display: grid;
-        grid-template-columns: 40% 60%;
-        grid-template-rows: repeat(3, 1fr);
+        grid-template-columns: 100%;
+        grid-template-rows: 10% auto 10%;
         grid-template-areas: 
-        "image des"
-        "image dategap"
-        "image weather";
+        "header"
+        "main"
+        "footer"
+        ;
+        main {
+            display: grid;
+            grid-template-columns: 100%;
+            grid-template-rows: 40% 20% 20% 20%;
+            grid-template-areas: 
+            "image"
+            "des"
+            "dategap"
+            "weather";
+        }
+}
+
+//Use for large screens
+@media only screen and (min-width: 600px){
+    .result-body-container {
+        display: grid;
+        grid-template-columns: 100%;
+        grid-template-rows: 10% auto 10%;
+        grid-template-areas: 
+        "header"
+        "main"
+        "footer"
+        ;
+        main {
+            display: grid;
+            grid-template-columns: 40% 60%;
+            grid-template-rows: repeat(3, 1fr);
+            grid-template-areas: 
+            "image des"
+            "image dategap"
+            "image weather";
+            grid-gap: 5px;
+            border-style: solid;
+            border-width: 0px 2px;
+            border-color: #0284C9;
+        }
+        overflow: hidden;
     }
 }
 
-#result-image {
-    grid-area: image;
-    background-color: blue;
-    border: 1px solid orange;
-}
 
-#result-destination {
-    grid-area: des;
-    background-color:burlywood;
-}
-
-#result-dategap {
-    grid-area: dategap;
-    background-color: cadetblue;
-}
-
-#result-weather {
-    grid-area: weather;
-    background-color: coral;
-}
