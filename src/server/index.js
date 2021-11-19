@@ -37,10 +37,11 @@ app.listen(3000, function () {
 app.post('/post', async (req, res)=>{
     try{
          projectData["cityName"] = await req.body.cityName;
-         projectData["departDate"] = await req.body.departDate;
+         projectData["startDate"] = await req.body.startDate;
+         projectData["endDate"] = await req.body.endDate;
 
         //Send user input to Geonames service and get weather data back
-        getWeatherData(projectData["cityName"], projectData["departDate"])
+        getWeatherData(projectData["cityName"], projectData["startDate"])
         .then(()=>{
 
             //Send endpoint data to client side
@@ -57,7 +58,7 @@ app.get('/get', (request, response)=>{
 })
 
 // Function to retrieve weather data
-const getWeatherData = async (cityName, departDate) =>{
+const getWeatherData = async (cityName, startDate) =>{
 
     //Retrieve coordinates from Geonames api
     const response = await fetch(`http://api.geonames.org/searchJSON?q=${cityName}&maxRows=10&username=${process.env.API_USERNAME}`)
@@ -71,7 +72,7 @@ const getWeatherData = async (cityName, departDate) =>{
         projectData["countryName"] = countryName;
 
         //Calculate date difference 
-        const dateDifference = calculateDateDifference(departDate);
+        const dateDifference = calculateDateDifference(startDate);
         projectData["dateGap"] = dateDifference;
 
         if(dateDifference < 8) {

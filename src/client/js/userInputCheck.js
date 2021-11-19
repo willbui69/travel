@@ -1,3 +1,4 @@
+//Function to erase all space in city name input
 function checkForCityInput(data){
      data = data.trim();
      if(data.length === 0){
@@ -7,18 +8,18 @@ function checkForCityInput(data){
      }
 }
 
-function checkForDateInput(futureDate){
+//Function to check input dates not in the past
+function checkForStartDate(startDate){
    let current = Date.parse(new Date());
-   let future =Date.parse(futureDate);
+   let future =Date.parse(startDate);
    if((future - current) < 0){
-      alert('Date must be today or in the future!');
       return false
-   }else{
-      return futureDate
+   } else{
+      return startDate
    }
 }
 
 export { 
    checkForCityInput,
-   checkForDateInput
+   checkForStartDate,
  }

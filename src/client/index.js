@@ -1,6 +1,6 @@
  import { checkForCityInput } from './js/userInputCheck'
  import { handleSubmit } from './js/formHandle'
- import { checkForDateInput } from './js/userInputCheck'
+ import { checkForStartDate } from './js/userInputCheck'
 
  import './styles/base.scss'
  import './styles/header.scss'
@@ -12,5 +12,5 @@
  export { 
      checkForCityInput,
      handleSubmit,
-     checkForDateInput,
+     checkForStartDate,
      }
