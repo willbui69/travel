@@ -1,10 +1,15 @@
-# Weather-Journal App Project
+# Travel-Planner App Project
 
 ## Overview
-This project requires you to create an asynchronous web app that uses Web API and user data to dynamically update the UI. 
+This project aims to create an asynchronous web app that uses Web API and user data to dynamically update the UI in which info about the trip, the weather forecast as well as a picture about the destination will be shown off. 
 
-## Instructions
-This will require modifying the `server.js` file and the `website/app.js` file. You can see `index.html` for element references, and once you are finished with the project steps, you can use `style.css` to style your application to customized perfection.
+## Technologies used
+* Webpack
+* Geonames API, Weatherbit API and Pixabay API services
+* Webpack Loaders and Plugins
+* Javascript, SCSS, HTML
+* Service workersWebpack
+* jest
 
 ## Extras
-If you are interested in testing your code as you go, you can use `tests.js` as a template for writing and running some basic tests for your code.
+Another feature of the project is that adding end date and displaying the length of trip. This is optional feature, user can not provide input for this.

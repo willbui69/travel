@@ -39,6 +39,7 @@ app.post('/post', async (req, res)=>{
          projectData["cityName"] = await req.body.cityName;
          projectData["startDate"] = await req.body.startDate;
          projectData["endDate"] = await req.body.endDate;
+         projectData["tripLength"] = calculateTripLength(projectData["startDate"], projectData["endDate"]);
 
         //Send user input to Geonames service and get weather data back
         getWeatherData(projectData["cityName"], projectData["startDate"])
@@ -105,6 +106,14 @@ const getWeatherData = async (cityName, startDate) =>{
     }
 }
 
+ //Function to calculate the trip length
+ function calculateTripLength(startDate, endDate){
+    let start = Date.parse(startDate);
+    let end = Date.parse(endDate);
+    let tripLength = (end - start) / (1000 * 3600 * 24);
+    return tripLength
+}
+
 //Function to calculate date difference
  function calculateDateDifference(futureDate){
 
@@ -133,7 +142,7 @@ const getWeatherData = async (cityName, startDate) =>{
     
     //No results returned then just use the default image link
     if(ImageResult.total == 0){
-        let imageLink = 'https://pixabay.com/get/g7697f0ba607f4270e247639dff78845406f1f6887910db18155c235f38912a432217819490962bbfaefa30ad128f0ec7c952cce4d5358b2fd88d8930b6028e70_640.jpg';
+        let imageLink = 'https://pixabay.com/get/g631942b552933ac6eedebc2710c58c3aa5685cde3fd57a13d3a72312bf581b82208e50a1415e250349c394eed85e34835076ccb759489969fb16eacedb8e9c9d_640.jpg';
         return imageLink;
     } else{
 
