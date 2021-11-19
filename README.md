@@ -9,7 +9,7 @@ This project aims to create an asynchronous web app that uses Web API and user d
 * Webpack Loaders and Plugins
 * Javascript, SCSS, HTML
 * Service workersWebpack
-* jest
+* Jest, Supertest
 
 ## Extras
 Another feature of the project is that adding end date and displaying the length of trip. This is optional feature, user can not provide input for this.
