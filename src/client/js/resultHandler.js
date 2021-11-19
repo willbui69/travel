@@ -7,11 +7,12 @@ async function insertServerData() {
     document.getElementById('result-destination').innerHTML = `<p style="font-family:'Times New Roman'; font-size: 18px; color: white; margin-left: 5px; margin-top: 15px;"> <span> My trip to: ${serverData.cityName}, ${serverData.countryName}</span> <br> <br> 
                                                                                                                                                            <span> Departing: ${serverData.startDate} </span></p>`
     document.getElementById('result-dategap').innerHTML = `<p style="font-family:'Times New Roman'; font-size: 18px; color: white; margin-left: 5px;">${serverData.cityName}, ${serverData.countryName} is ${serverData.dateGap} days away</p>`
-    document.getElementById('result-weather').innerHTML = `<p style="font-family:'Times New Roman'; font-size: 18px; color: white; margin-left: 5px;">Typical weather for then is:<br>
-                                                            <span style="font-family:'Times New Roman'; font-size: 18px; color: white; margin-left: 5px;">Temperature: ${serverData.temp}</span><br>
+    document.getElementById('result-weather').innerHTML = `<p style="font-family:'Times New Roman'; font-size: 18px; color: white; margin-left: 5px;">Typical weather for then is:<br> <br>
+                                                            <span style="font-family:'Times New Roman'; font-size: 18px; color: white; margin-left: 5px;">Temperature: ${serverData.temp}</span><br> <br>
                                                             <span style="font-family:'Times New Roman'; font-size: 18px; color: white; margin-left: 5px;">${serverData.des} throughout the day</span></p>`
     //Check whether end date available or not
     if(serverData.endDate){
+
         //Display the length of the trip
         const destinationId = document.querySelector('#result-destination');
         const div = document.createElement("div");

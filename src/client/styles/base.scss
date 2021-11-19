@@ -48,7 +48,7 @@ html, body {
         main {
             display: grid;
             grid-template-columns: 100%;
-            grid-template-rows: 40% 30% 20% 20%;
+            grid-template-rows: 40% 20% 10% 30%;
             grid-template-areas: 
             "image"
             "des"
@@ -71,8 +71,9 @@ html, body {
         main {
             display: grid;
             grid-template-columns: 40% 60%;
-            grid-template-rows: repeat(3, 1fr);
+            grid-template-rows: 5% 35% 20% 40%;
             grid-template-areas: 
+            "image ."
             "image des"
             "image dategap"
             "image weather";
