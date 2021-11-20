@@ -1,15 +1,23 @@
-const app = require('./app.js')
+const express = require('express')
+const  app = require('./app.js')
 const fetch = require('node-fetch')
 const dotenv = require('dotenv')
+//const port = process.env.PORT
 dotenv.config();
 
-// designates what port the app will listen to for incoming requests
-app.listen(3000, function () {
-    console.log('The travel app listening on port 3000!')
+//Data project endpoint
+const projectData = {};
+
+app.use(express.static('dist'))
+
+app.get('/', function (req, res) {
+    res.sendFile('dist/index.html')
 })
 
-//Data project endpoint
-projectData = {};
+// designates what port the app will listen to for incoming requests
+app.listen(3000, function() {
+    console.log('The travel app listening on port 3000');
+})
 
 //Get user input from client side
 app.post('/post', async (req, res)=>{
@@ -129,3 +137,5 @@ const getWeatherData = async (cityName, startDate) =>{
         return imageLink;
     }
  }
+
+ module.exports = app

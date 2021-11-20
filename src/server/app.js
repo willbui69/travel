@@ -1,9 +1,5 @@
 const express = require('express')
-
 const app = express()
-
-app.use(express.static('dist'))
-
 /* Middleware*/
 const bodyParser = require('body-parser');
 
@@ -17,8 +13,4 @@ const cors = require('cors');
 const { response } = require('express');
 app.use(cors());
 
-app.get('/', function (req, res) {
-    res.sendFile('dist/index.html')
-})
-
-module.exports = app;
+module.exports = app
