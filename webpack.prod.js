@@ -1,6 +1,7 @@
 const path = require('path')
 const webpack = require('webpack')
 const HtmlWebPackPlugin = require("html-webpack-plugin")
+const WorkboxPlugin = require('workbox-webpack-plugin')
 
 module.exports = {
     entry: {
@@ -45,6 +46,7 @@ module.exports = {
             inject: true,
             chunks: ['result'],
             filename: "result.html"
-        })
+        }),
+        new WorkboxPlugin.GenerateSW()
     ]
 }
