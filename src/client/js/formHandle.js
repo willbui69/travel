@@ -32,7 +32,7 @@ async function handleSubmit(event){
                 return false
             } else{
                 //Redirect the index page to result.html
-                window.location.replace("http://localhost:3000/result.html");
+                window.location.assign("http://localhost:3000/result.html");
             }
     
         }catch(error){
